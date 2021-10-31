@@ -24,7 +24,6 @@ export default class extends React.Component {
       const {
         data: { results: popular },
       } = await tvApi.popular();
-
       this.setState({
         topRated,
         airingToday,
@@ -32,7 +31,7 @@ export default class extends React.Component {
       });
     } catch {
       this.setState({
-        error: "Can't find movies information.",
+        error: "Can't find TV information.",
       });
     } finally {
       this.setState({
