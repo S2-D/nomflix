@@ -9,7 +9,8 @@ import Error from "Components/Message";
 import Poster from "Components/Poster";
 
 const Container = styled.div`
-  padding: 0px 10px;
+  padding: 20px;
+  padding-top: 20px;
 `;
 
 const HomePresenter = ({ nowPlaying, popular, upcoming, loading, error }) =>
