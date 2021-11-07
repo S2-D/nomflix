@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import Section from "../../Components/Section";
 import Loader from "Components/Loader";
@@ -10,56 +11,62 @@ const Container = styled.div`
   padding: 10px;
 `;
 
-const TVPresenter = ({ topRated, popular, airingToday, loading, error }) =>
-  loading ? (
-    <Loader />
-  ) : (
-    <Container>
-      {topRated && topRated.length > 0 && (
-        <Section title="Top Rated Show">
-          {topRated.map((show) => (
-            <Poster
-              key={show.id}
-              id={show.id}
-              imageUrl={show.poster_path}
-              title={show.original_name}
-              rating={show.vote_average}
-              year={show.first_air_date.substring(0, 4)}
-            />
-          ))}
-        </Section>
-      )}
-      {popular && popular.length > 0 && (
-        <Section title="Popluar Show">
-          {popular.map((show) => (
-            <Poster
-              key={show.id}
-              id={show.id}
-              imageUrl={show.poster_path}
-              title={show.original_name}
-              rating={show.vote_average}
-              year={show.first_air_date.substring(0, 4)}
-            />
-          ))}
-        </Section>
-      )}
-      {airingToday && airingToday.length > 0 && (
-        <Section title="airingToday">
-          {airingToday.map((show) => (
-            <Poster
-              key={show.id}
-              id={show.id}
-              imageUrl={show.poster_path}
-              title={show.original_name}
-              rating={show.vote_average}
-              year={show.first_air_date.substring(0, 4)}
-            />
-          ))}
-        </Section>
-      )}
-      {error && <Message color="e74c3c" text={error} />}
-    </Container>
-  );
+const TVPresenter = ({ topRated, popular, airingToday, loading, error }) => (
+  <>
+    <Helmet>
+      <title> TV | Nomflix</title>
+    </Helmet>
+    {loading ? (
+      <Loader />
+    ) : (
+      <Container>
+        {topRated && topRated.length > 0 && (
+          <Section title="Top Rated Show">
+            {topRated.map((show) => (
+              <Poster
+                key={show.id}
+                id={show.id}
+                imageUrl={show.poster_path}
+                title={show.original_name}
+                rating={show.vote_average}
+                year={show.first_air_date.substring(0, 4)}
+              />
+            ))}
+          </Section>
+        )}
+        {popular && popular.length > 0 && (
+          <Section title="Popluar Show">
+            {popular.map((show) => (
+              <Poster
+                key={show.id}
+                id={show.id}
+                imageUrl={show.poster_path}
+                title={show.original_name}
+                rating={show.vote_average}
+                year={show.first_air_date.substring(0, 4)}
+              />
+            ))}
+          </Section>
+        )}
+        {airingToday && airingToday.length > 0 && (
+          <Section title="airingToday">
+            {airingToday.map((show) => (
+              <Poster
+                key={show.id}
+                id={show.id}
+                imageUrl={show.poster_path}
+                title={show.original_name}
+                rating={show.vote_average}
+                year={show.first_air_date.substring(0, 4)}
+              />
+            ))}
+          </Section>
+        )}
+        {error && <Message color="e74c3c" text={error} />}
+      </Container>
+    )}
+  </>
+);
 
 TVPresenter.propTypes = {
   topRated: PropTypes.array,
