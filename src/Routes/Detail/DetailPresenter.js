@@ -175,14 +175,17 @@ const DetailPresenter = ({ result, loading, error }) =>
           ) : null}
 
           {result.production_companies.length > 0 ? (
-            <Companies>
+            <>
               <Title>Productions</Title>
-              {result.production_companies.map((company) => (
-                <>
-                  <Production>{company.name}</Production>
-                </>
-              ))}
-            </Companies>
+
+              <Companies>
+                {result.production_companies.map((company) => (
+                  <>
+                    <Production>{company.name}</Production>
+                  </>
+                ))}
+              </Companies>
+            </>
           ) : null}
 
           {result.seasons ? (
