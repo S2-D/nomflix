@@ -2,6 +2,13 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import styled from "styled-components";
 
+const H1Link = styled(Link)`
+  font-family: "Netflix Sans", sans-serif;
+  font-weight: 600;
+  font-size: 70px;
+  margin: 20px;
+`;
+
 const Header = styled.header`
   color: white;
   position: fixed;
@@ -25,7 +32,7 @@ const Item = styled.li`
   height: 50px;
   text-align: center;
   border-bottom: 3px solid
-    ${(props) => (props.current ? "#3498db" : "transparent")};
+    ${(props) => (props.current ? "white" : "transparent")};
   transition: border-bottom 0.5s ease-in-out;
 `;
 const SLink = styled(Link)`
@@ -37,6 +44,7 @@ const SLink = styled(Link)`
 
 export default withRouter(({ location: { pathname } }) => (
   <Header>
+    <H1Link to="/">NOMFLIX</H1Link>
     <List>
       <Item current={pathname === "/"}>
         <SLink to="/">Movies</SLink>

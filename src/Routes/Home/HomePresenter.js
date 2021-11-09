@@ -7,10 +7,16 @@ import Section from "Components/Section";
 import Loader from "Components/Loader";
 import Error from "Components/Message";
 import Poster from "Components/Poster";
+import Carousel from "Components/Carousel";
 
 const Container = styled.div`
   padding: 20px;
   padding-top: 20px;
+`;
+
+const Title = styled.span`
+  font-size: 22px;
+  font-weight: 600;
 `;
 
 const HomePresenter = ({ nowPlaying, popular, upcoming, loading, error }) =>
@@ -18,23 +24,11 @@ const HomePresenter = ({ nowPlaying, popular, upcoming, loading, error }) =>
     <Loader />
   ) : (
     <Container>
-      {nowPlaying && nowPlaying.length > 0 && (
-        <Section title="Now Playing">
-          {nowPlaying.map((movie) => (
-            <Poster
-              key={movie.id}
-              id={movie.id}
-              imageUrl={movie.poster_path}
-              title={movie.original_title}
-              rating={movie.vote_average}
-              year={movie.release_date.substring(0, 4)}
-              isMovie={true}
-            />
-          ))}
-        </Section>
-      )}
+      <Title>🍿 Now Playing</Title>
+      <Carousel nowPlaying={nowPlaying} isMovie={true} />
+
       {upcoming && upcoming.length > 0 && (
-        <Section title="Upcoming Movies">
+        <Section title="🎬 Upcoming Movies">
           {upcoming.map((movie) => (
             <Poster
               key={movie.id}
@@ -49,7 +43,7 @@ const HomePresenter = ({ nowPlaying, popular, upcoming, loading, error }) =>
         </Section>
       )}
       {popular && popular.length > 0 && (
-        <Section title="Popular Movies">
+        <Section title="🤩 Popular Movies">
           {popular.map((movie) => (
             <Poster
               key={movie.id}

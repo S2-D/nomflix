@@ -6,7 +6,7 @@ const Container = styled.div`
   width: 100vw;
   display: flex;
   justify-content: center;
-  font-size: 32px;
+  font-size: 40px;
   margin-top: 28px;
 `;
 
