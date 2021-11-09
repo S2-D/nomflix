@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import Loader from "Components/Loader";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   height: calc(100vh - 50px);
@@ -42,10 +43,11 @@ const Backdrop = styled.div`
 
 const Data = styled.div`
   width: 70%;
-  margin-left: 10px;
+  margin-left: 30px;
 `;
 
 const Title = styled.h3`
+  margin: 20px 0;
   font-size: 32px;
   margin-bottom: 10px;
 `;
@@ -59,11 +61,44 @@ const Divider = styled.span`
 `;
 
 const Overview = styled.p`
-  font-size: 12px;
+  font-size: 14px;
   opacity: 0.7;
   line-height: 1.5;
   width: 50%;
+  margin: 30px 0px;
 `;
+
+const A = styled.a`
+  display: inline-block;
+  margin-left: 10px;
+  background-color: #f3c317;
+  padding: 5px 10px;
+  border-radius: 6px;
+  color: black;
+  font-weight: 800;
+`;
+
+const Img = styled.img`
+  width: 200px;
+  height: 300px;
+  background-color: white;
+  margin: 0px;
+  padding: 10px;
+`;
+const Companies = styled.div`
+  display: flex;
+`;
+
+const Production = styled.span`
+  font-family: "Netflix Sans", sans-serif;
+  margin: 20px 10px;
+  padding: 5px 12px 8px 12px;
+  font-size: 15px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  text-align: center;
+`;
+
 const DetailPresenter = ({ result, loading, error }) =>
   loading ? (
     <>
@@ -116,8 +151,55 @@ const DetailPresenter = ({ result, loading, error }) =>
                     : `${genre.name} / `
                 )}
             </Item>
+            {result.imdb_id ? (
+              <A href={`https://www.imdb.com/title/${result.imdb_id}`}>IMDb</A>
+            ) : null}
+            {console.log(result)}
           </ItemContainer>
           <Overview>{result.overview}</Overview>
+
+          {result.videos.results[0] ? (
+            <>
+              <Title>Trailers</Title>
+              <iframe
+                margin="20px"
+                width="560"
+                height="315"
+                src={`https://www.youtube.com/embed/${result.videos.results[0].key}`}
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </>
+          ) : null}
+
+          {result.production_companies.length > 0 ? (
+            <Companies>
+              <Title>Productions</Title>
+              {result.production_companies.map((company) => (
+                <>
+                  <Production>{company.name}</Production>
+                </>
+              ))}
+            </Companies>
+          ) : null}
+
+          {result.seasons ? (
+            <>
+              {" "}
+              <Title>Seasons</Title>
+              {result.seasons.map((season) => (
+                <>
+                  {season.poster_path ? (
+                    <Img
+                      src={`https://image.tmdb.org/t/p/w300${season.poster_path}`}
+                    ></Img>
+                  ) : null}
+                </>
+              ))}
+            </>
+          ) : null}
         </Data>
       </Content>
     </Container>
