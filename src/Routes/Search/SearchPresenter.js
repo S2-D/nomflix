@@ -41,7 +41,7 @@ const Title = styled.h2`
 const MovieSpan = styled.span`
   font-family: "Netflix Sans", sans-serif;
   margin: 20px 10px;
-  padding: 5px 12px 8px 12px;
+  padding: 5px 12px 7px 12px;
   font-size: 15px;
   background-color: #7941e5;
   border-radius: 15px;
