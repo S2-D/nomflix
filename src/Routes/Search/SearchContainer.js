@@ -9,7 +9,36 @@ export default class extends React.Component {
     searchTerm: "",
     loading: false,
     error: null,
+    movieTrend: null,
+    tvTrend: null,
   };
+
+  async componentDidMount() {
+    try {
+      const {
+        data: { results: movieTrend },
+      } = await moviesApi.trend();
+      movieTrend.splice(5, 15);
+      const {
+        data: { results: tvTrend },
+      } = await tvApi.trend();
+      tvTrend.splice(5, 15);
+      console.log(movieTrend);
+      this.setState({
+        movieTrend,
+        tvTrend,
+      });
+      console.log(movieTrend);
+    } catch {
+      this.setState({
+        error: "Can't find information.",
+      });
+    } finally {
+      this.setState({
+        loading: false,
+      });
+    }
+  }
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -47,7 +76,15 @@ export default class extends React.Component {
   };
 
   render() {
-    const { movieResults, tvResults, searchTerm, loading, error } = this.state;
+    const {
+      movieResults,
+      tvResults,
+      searchTerm,
+      loading,
+      error,
+      movieTrend,
+      tvTrend,
+    } = this.state;
     console.log(this.state);
     return (
       <SearchPresenter
@@ -58,6 +95,8 @@ export default class extends React.Component {
         error={error}
         handleSubmit={this.handleSubmit}
         updateTerm={this.updateTerm}
+        movieTrend={movieTrend}
+        tvTrend={tvTrend}
       />
     );
   }

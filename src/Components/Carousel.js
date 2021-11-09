@@ -8,7 +8,9 @@ import Slider from "react-slick";
 const Img = styled.img`
   background-image: url(${(props) => props.bgUrl});
   display: block;
-  height: 460px;
+  /* height: 460px; */
+  height: 18%;
+
   border-radius: 15px;
   justify-content: center;
   margin: 0px auto;
@@ -36,7 +38,7 @@ class Carousel extends React.Component {
       speed: 1000,
       autoplay: true,
       autoplaySpeed: 2000, // 넘어가는 속도
-      slidesToShow: 5, // 4장씩 보이게
+      slidesToShow: 4, // 4장씩 보이게
       slidesToScroll: 1, // 1장씩 뒤로 넘어가게
       centerMode: true,
       centerPadding: "0px", // 0px 하면 슬라이드 끝쪽 이미지가 안잘림

@@ -24,6 +24,7 @@ export const moviesApi = {
         query: encodeURIComponent(term),
       },
     }),
+  trend: () => api.get("trending/movie/week"),
 };
 
 export const tvApi = {
@@ -42,4 +43,5 @@ export const tvApi = {
         query: encodeURIComponent(term),
       },
     }),
+  trend: () => api.get("trending/tv/week"),
 };
