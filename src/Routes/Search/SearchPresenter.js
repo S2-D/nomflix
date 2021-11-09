@@ -29,6 +29,7 @@ const Input = styled.input`
 
 const Recommend = styled.div`
   display: flex;
+  margin-bottom: 30px;
 `;
 
 const Title = styled.h2`
@@ -123,7 +124,11 @@ const SearchPresenter = ({
                 imageUrl={movie.poster_path}
                 title={movie.original_title}
                 rating={movie.vote_average}
-                year={movie.release_date.substring(0, 4)}
+                year={
+                  movie.release_date.length > 0
+                    ? movie.release_date.substring(0, 4)
+                    : null
+                }
                 isMovie={true}
               />
             ))}
@@ -138,7 +143,11 @@ const SearchPresenter = ({
                 imageUrl={show.poster_path}
                 title={show.original_name}
                 rating={show.vote_average}
-                year={show.first_air_date.substring(0, 4)}
+                year={
+                  show.first_air_date !== undefined
+                    ? show.first_air_date.substring(0, 4)
+                    : null
+                }
               />
             ))}
           </Section>
