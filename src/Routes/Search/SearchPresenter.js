@@ -38,31 +38,16 @@ const Title = styled.h2`
   font-weight: 600;
 `;
 
-const MovieSpan = styled.span`
+const Span = styled.span`
   font-family: "Netflix Sans", sans-serif;
   margin: 20px 10px;
   padding: 5px 12px 7px 12px;
   font-size: 15px;
-  background-color: #7941e5;
+  background-color: ${(props) => props.bgColor};
   border-radius: 15px;
   text-align: center;
   filter: brightness(80%);
   color: white;
-
-  &:hover {
-    filter: brightness(100%);
-  }
-`;
-
-const TVSpan = styled.span`
-  font-family: "Netflix Sans", sans-serif;
-  margin: 20px 10px;
-  padding: 5px 12px 8px 12px;
-  font-size: 15px;
-  background-color: #4287f5;
-  border-radius: 15px;
-  text-align: center;
-  filter: brightness(80%);
   &:hover {
     filter: brightness(100%);
   }
@@ -95,7 +80,7 @@ const SearchPresenter = ({
       <Recommend>
         {movieTrend.map((movie) => (
           <Link to={`/movie/${movie.id}`}>
-            <MovieSpan>{movie.title}</MovieSpan>
+            <Span bgColor="#7941e5">{movie.title}</Span>
           </Link>
         ))}
       </Recommend>
@@ -105,7 +90,7 @@ const SearchPresenter = ({
       <Recommend>
         {tvTrend.map((tv) => (
           <Link to={`/show/${tv.id}`}>
-            <TVSpan>{tv.original_name}</TVSpan>
+            <Span bgColor="#4287f5">{tv.original_name}</Span>
           </Link>
         ))}
       </Recommend>

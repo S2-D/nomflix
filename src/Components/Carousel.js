@@ -10,7 +10,6 @@ const Img = styled.img`
   display: block;
   /* height: 460px; */
   height: 18%;
-
   border-radius: 15px;
   justify-content: center;
   margin: 0px auto;
